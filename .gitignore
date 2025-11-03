@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# Repo Artefacts
+artifacts/
+generated_code/
+test_cases/
+*.mmd
+
 # Distribution / packaging
 .Python
 build/

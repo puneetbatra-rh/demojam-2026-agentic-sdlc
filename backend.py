@@ -4,10 +4,6 @@ from dotenv import load_dotenv
 import re
 load_dotenv() ## aloading all the environment variable
 
-AUTH_TOKEN=os.getenv("LLAMA_API_KEY")
-MODEL=os.getenv("LLAMA_MODEL")
-INFERENCE_URL_BASE=os.getenv("LLAMA_URL")
-
 
 # building Graph
 from langgraph.graph import END, StateGraph, START
@@ -21,7 +17,12 @@ from pprint import pprint
 from docx import Document
 
 from langchain_openai import ChatOpenAI
-import os
+
+
+
+AUTH_TOKEN=os.getenv("LLAMA_API_KEY")
+MODEL=os.getenv("LLAMA_MODEL")
+INFERENCE_URL_BASE=os.getenv("LLAMA_URL")
 
 # from llama_stack_client import LlamaStackClient
 # base_url = os.getenv("REMOTE_BASE_URL")
