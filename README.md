@@ -57,3 +57,12 @@ streamlit run app.py \
     --server.port=8501 \
     --server.enableCORS=false \
     --server.enableXsrfProtection=false
+
+
+### 5. Accessing the Streamlit Application
+
+Application can now be accessed as per the below url
+
+Append <Root URL of your Jupyter notebook until */lab> with */lab/proxy/8501
+
+
