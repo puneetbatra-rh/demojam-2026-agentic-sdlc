@@ -9,7 +9,7 @@ from backend import (
     models_list
 )
 
-st.set_page_config(page_title="AI SDLC Wizard", layout="wide")
+st.set_page_config(page_title="DemoJam 2026 Agentic AI SDLC", layout="wide")
 # Sidebar configurations
 with st.sidebar:
     st.header("Model Configuration")
@@ -85,7 +85,7 @@ def get_current_node():
 
 
 current_node = get_current_node()
-st.markdown(f"Status: ⏳ Awaiting Approval: **{current_node}**" if current_node!="Deployment" else "Completed")
+st.markdown(f"Status: ⏳ Awaiting Approval - **{current_node}**" if current_node!="Deployment" else "Status: Completed")
 
 # Tab-based layout
 tabs = st.tabs(["User Requirements", "User Stories", "Design Document", "Code",  "Security Review", "Test Cases", "QA Review", "Deployment"])

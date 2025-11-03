@@ -18,34 +18,26 @@ from docx import Document
 
 from langchain_openai import ChatOpenAI
 
+models_list = os.getenv("AVAILABLE_MODELS")
+models_list=models_list.split(',')
 
+def fetch_model_key(llm_name: str):
+    if llm_name == "llama-4-scout-17b-16e-w4a16":
+        AUTH_TOKEN=os.getenv("LLAMA_API_KEY")
+        INFERENCE_URL_BASE=os.getenv("LLAMA_URL")
+        
+    elif llm_name == "granite-3-3-8b-instruct":
+        AUTH_TOKEN=os.getenv("GRANITE_API_KEY")
+        INFERENCE_URL_BASE=os.getenv("GRANITE_URL")
+    return AUTH_TOKEN, INFERENCE_URL_BASE
 
-AUTH_TOKEN=os.getenv("LLAMA_API_KEY")
-MODEL=os.getenv("LLAMA_MODEL")
-INFERENCE_URL_BASE=os.getenv("LLAMA_URL")
-
-# from llama_stack_client import LlamaStackClient
-# base_url = os.getenv("REMOTE_BASE_URL")
-# client = LlamaStackClient(
-#     base_url=base_url
-# )
-# print (client.models.list())
-models_list=["llama-4-scout-17b-16e-w4a16","M2"]
-
-# The 'model_name' here is often a placeholder or the deployment name
-# and is required by the ChatOpenAI class.
-# llm = ChatOpenAI(
-#     model=models_list[0],
-#     openai_api_base=INFERENCE_URL_BASE,
-#     openai_api_key=AUTH_TOKEN
-#     # Disable SSL verification if you are using a self-signed or internal certificate
-#     # client_kwargs={"verify": False}
-# )
 
 def llm_func(llm_name: str):
     """
     Chooses and initializes the correct LLM based on the user's selection.
     """
+    
+    AUTH_TOKEN, INFERENCE_URL_BASE = fetch_model_key(llm_name)
     return ChatOpenAI(
     model=llm_name,
     openai_api_base=INFERENCE_URL_BASE,
@@ -1295,7 +1287,6 @@ graph = graph_builder.compile(interrupt_before=["Human User Story Approval", "Hu
 with open('react_graph.mmd', 'w') as f:
     f.write(graph.get_graph().draw_mermaid())
 print("Ready to receive requests")
-#print (f"selected model is: {chosen_model[0]}")
 
 
 thread = {
@@ -1304,4 +1295,4 @@ thread = {
     }
 }
 
-__all__ = ["State", "graph","models_list","chosen_model"]
+__all__ = ["State", "graph","models_list"]
