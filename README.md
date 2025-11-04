@@ -61,6 +61,6 @@ streamlit run app.py \
 
 Application can now be accessed as per the below url
 
-Append <Root URL of your Jupyter notebook until */lab> with */lab/proxy/8501
+Append <Root URL of your Jupyter notebook until */lab> with */lab/proxy/8501/
 
 
