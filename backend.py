@@ -42,8 +42,6 @@ def llm_func(llm_name: str):
     model=llm_name,
     openai_api_base=INFERENCE_URL_BASE,
     openai_api_key=AUTH_TOKEN
-    # Disable SSL verification if you are using a self-signed or internal certificate
-    # client_kwargs={"verify": False}
 )
 
 # Data modeling
@@ -1209,13 +1207,6 @@ graph_builder.add_node("QA Review", qa_testing)
 graph_builder.add_node("Human QA Review", human_qa_review)
 graph_builder.add_node("Deployment", deployment)
 
-# graph_builder.add_node("Fix Code after QA Feedback", fix_code_after_qa_feedback)
-# # graph_builder.add_node("Monitoring", monitoring)
-# # graph_builder.add_node("Requirement Change", requirement_change)
-
-
-
-
 graph_builder.add_edge(START, "User Requirements")
 graph_builder.add_edge("User Requirements", "User Stories")
 graph_builder.add_edge("User Stories", "Human User Story Approval")
@@ -1280,10 +1271,6 @@ memory = MemorySaver()
 graph = graph_builder.compile(interrupt_before=["Human User Story Approval", "Human Design Document Review", "Human Code Review", "Human Security Review", "Human Test Cases Review", "Human QA Review"], checkpointer=memory)
 
 
-# Save the PNG to a file
-# with open('react_graph.mmd', 'wb') as f:
-#     f.write(graph.get_graph().draw_mermaid_png())
-# print("Graph image saved as 'react_graph.png'. Open it to view the graph.")
 with open('react_graph.mmd', 'w') as f:
     f.write(graph.get_graph().draw_mermaid())
 print("Ready to receive requests")
