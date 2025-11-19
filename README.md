@@ -27,7 +27,7 @@ https://catalog.demo.redhat.com/catalog?search=llama&item=babylon-catalog-prod%2
 2.  **Configure Environment Variables:**
     * Rename the example environment file:
         ```bash
-        mv env.example .env
+        mv .env.example .env
         ```
     * Open the newly renamed **`.env`** file and update the **model names**, **URL**, and **API key** to match the Large Language Models (LLMs) you have chosen and configured access for.
 
